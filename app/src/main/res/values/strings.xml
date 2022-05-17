@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Mareu</string>
+    <string name="r_union">Réunion</string>
+    <string name="heure">Heure</string>
+    <string name="salle">Salle</string>
+    <string name="m_il_participants">m@il_participants</string>
+    <string name="todo">TODO</string>
+</resources>
