@@ -61,14 +61,19 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         public final TextView rooms;
         public final TextView attendeesMail;
         public final TextView deleteButton;
+        public final View constraint;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             meetingName = itemView.findViewById(R.id.meeting);
             hours = itemView.findViewById(R.id.hours);
             rooms = itemView.findViewById(R.id.room);
             attendeesMail = itemView.findViewById(R.id.attendeesMail);
             deleteButton = itemView.findViewById(R.id.delete_button);
+
+            constraint = itemView.findViewById(R.id.constraint);
         }
         public void displayMeeting(Meeting meet){
             meetingName.setText(meet.getNameOFMeeting());
@@ -80,6 +85,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         public void displayRoom(Rooms room){
             rooms.setText(room.getRoomName());
         }
+
 
         }
 
