@@ -6,26 +6,26 @@ import java.util.List;
 public class Rooms {
 
   //FIELDS
-    private String name;
+    private String roomName;
     public List <Rooms> roomList;
     private int numberOfRooms;
     private int maximumAttendees;
 
   //CONSTRUCTORS
   public Rooms(String name, List<Rooms> roomList, int numberOfRooms, int maximumAttendees) {
-    this.name = name;
+    this.roomName = name;
     this.roomList = roomList;
     this.numberOfRooms = numberOfRooms;
     this.maximumAttendees = maximumAttendees;
   }
 
   //GETTERS & SETTERS
-  public String getName() {
-    return name;
+  public String getRoomName() {
+    return roomName;
   }
 
   public void setName(String name) {
-    this.name = name;
+    this.roomName = name;
   }
 
   public List<Rooms> getRoomList() {
