@@ -13,10 +13,11 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="16dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_baseline_circle_24"
+
          />
 
     <TextView
@@ -26,6 +27,7 @@
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
         android:text="@string/r_union"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/circle"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +39,7 @@
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
         android:text="@string/heure"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/meeting"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +51,7 @@
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
         android:text="@string/salle"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/hours"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +63,7 @@
 android:layout_margin="16dp"
         android:text="@string/m_il_participants"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/circle" />
+        app:layout_constraintStart_toEndOf="@id/circle" />
 
     <ImageButton
         android:id="@+id/delete_button"
@@ -67,12 +71,11 @@ android:layout_margin="16dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:background="@null"
-
         android:minWidth="48dp"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/circle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/circle"
+        app:layout_constraintTop_toTopOf="@id/circle"
         app:srcCompat="@drawable/ic_baseline_delete_24"
         tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
 

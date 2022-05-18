@@ -23,17 +23,21 @@ public class MeetingDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_details);
+        displayingRecyclerView();
+    }
+
+    public void displayingRecyclerView() {
 
         ArrayList<Meeting>meetingList = new ArrayList<>();
         meetingList.add(new Meeting("Problème","Peach","clarissa@jeymail.fr"));
 
 
-       mRecyclerView = findViewById(R.id.recyclerView);
-       mRecyclerView.setHasFixedSize(true);
-       mLayoutManager = new LinearLayoutManager(this);
-       mAdapter = new MeetingAdapter(meetingList);
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new MeetingAdapter(meetingList);
 
-       mRecyclerView.setLayoutManager(mLayoutManager);
-       mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
