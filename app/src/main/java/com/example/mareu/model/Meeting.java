@@ -3,69 +3,31 @@ package com.example.mareu.model;
 
 public class Meeting {
 
+
+
     //FIELDS
-    private String nameOFMeeting;
-    private int durationOfMeeting;
-    private int numberAttendees;
-    private String meetingsTheme;
-    private String meetingsReport;
-    private String meetingsDate;
+    private String nameOfMeeting;
+    private String rooms;
+    private String attendeesMail;
 
     //CONSTRUCTOR
-    public Meeting(int durationOfMeeting, int numberAttendees, String meetingsTheme) {
-        this.durationOfMeeting = durationOfMeeting;
-        this.numberAttendees = numberAttendees;
-        this.meetingsTheme = meetingsTheme;
+    public Meeting(String nameOfMeeting,String rooms, String attendeesMail) {
+        this.nameOfMeeting = nameOfMeeting;
+        this.attendeesMail = attendeesMail;
+        this.rooms = rooms;
     }
 
     //GETTERS & SETTERS
+    public String getNameOfMeeting() { return nameOfMeeting; }
 
+    public void setNameOfMeeting(String nameOfMeeting) { this.nameOfMeeting = nameOfMeeting; }
 
-    public String getNameOFMeeting() {
-        return nameOFMeeting;
-    }
+    public String getRooms() { return rooms; }
 
-    public void setNameOFMeeting(String nameOFMeeting) {
-        this.nameOFMeeting = nameOFMeeting;
-    }
+    public void setRooms(String rooms) { this.rooms = rooms; }
 
-    public int getDurationOfMeeting() {
-        return durationOfMeeting;
-    }
+    public String getAttendeesMail() { return attendeesMail; }
 
-    public void setDurationOfMeeting(int durationOfMeeting) {
-        this.durationOfMeeting = durationOfMeeting;
-    }
-
-    public int getNumberAttendees() {
-        return numberAttendees;
-    }
-
-    public void setNumberAttendees(int numberAttendees) {
-        this.numberAttendees = numberAttendees;
-    }
-
-    public String getMeetingsTheme() {
-        return meetingsTheme;
-    }
-
-    public void setMeetingsTheme(String meetingsTheme) {
-        this.meetingsTheme = meetingsTheme;
-    }
-
-    public String getMeetingsReport() {
-        return meetingsReport;
-    }
-
-    public void setMeetingsReport(String meetingsReport) {
-        this.meetingsReport = meetingsReport;
-    }
-
-    public String getMeetingsDate() {
-        return meetingsDate;
-    }
-
-    public void setMeetingsDate(String meetingsDate) {
-        this.meetingsDate = meetingsDate;
-    }
+    public void setAttendeesMail(String attendeesMail) { this.attendeesMail = attendeesMail; }
 }
+
