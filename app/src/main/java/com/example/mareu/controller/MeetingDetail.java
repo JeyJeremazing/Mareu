@@ -7,9 +7,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.mareu.R;
 import com.example.mareu.controller.UI.MeetingAdapter;
-import com.example.mareu.model.Attendees;
 import com.example.mareu.model.Meeting;
-import com.example.mareu.model.Rooms;
+import com.example.mareu.model.Room;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ public class MeetingDetail extends AppCompatActivity {
     public void displayingRecyclerView() {
 
         ArrayList<Meeting>meetingList = new ArrayList<>();
-        meetingList.add(new Meeting("Problème","Peach","clarissa@jeymail.fr"));
+        meetingList.add(new Meeting("Problème",new Room("Peach"),"clarissa@jeymail.fr"));
 
 
         mRecyclerView = findViewById(R.id.recyclerView);

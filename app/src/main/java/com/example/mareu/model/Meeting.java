@@ -4,14 +4,14 @@ package com.example.mareu.model;
 public class Meeting {
     //FIELDS
     private String nameOfMeeting;
-    private String rooms;
+    private Room room;
     private String attendeesMail;
 
     //CONSTRUCTOR
-    public Meeting(String nameOfMeeting,String rooms, String attendeesMail) {
+    public Meeting(String nameOfMeeting, Room room, String attendeesMail) {
         this.nameOfMeeting = nameOfMeeting;
         this.attendeesMail = attendeesMail;
-        this.rooms = rooms;
+        this.room = room;
     }
 
     //GETTERS & SETTERS
@@ -19,9 +19,9 @@ public class Meeting {
 
     public void setNameOfMeeting(String nameOfMeeting) { this.nameOfMeeting = nameOfMeeting; }
 
-    public String getRooms() { return rooms; }
+    public Room getRoom() { return room; }
 
-    public void setRooms(String rooms) { this.rooms = rooms; }
+    public void setRoom(Room room) { this.room = room; }
 
     public String getAttendeesMail() { return attendeesMail; }
 
