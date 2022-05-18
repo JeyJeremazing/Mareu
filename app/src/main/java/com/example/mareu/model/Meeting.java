@@ -2,9 +2,6 @@ package com.example.mareu.model;
 
 
 public class Meeting {
-
-
-
     //FIELDS
     private String nameOfMeeting;
     private String rooms;
