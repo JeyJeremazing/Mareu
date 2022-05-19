@@ -18,7 +18,8 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
    private final List<Meeting> mMeetings;
 
     public MeetingAdapter(List<Meeting> meetings)  {
-        this.mMeetings = meetings; }
+        this.mMeetings = meetings;
+    }
 
     @NonNull
     @Override
@@ -31,31 +32,25 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull MeetingAdapter.ViewHolder holder, int position) {
         holder.displayMeeting(mMeetings.get(position));
-
     }
 
     @Override
     public int getItemCount() {
         return mMeetings.size();
-
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-
         public final TextView meetingName;
-       // public final TextView hours;
         public final TextView rooms;
         public final TextView attendeesMail;
-        //public final TextView deleteButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             meetingName = itemView.findViewById(R.id.meeting);
-            //hours = itemView.findViewById(R.id.hours);
             rooms = itemView.findViewById(R.id.room);
             attendeesMail = itemView.findViewById(R.id.attendeesMail);
-            //deleteButton = itemView.findViewById(R.id.delete_button);
         }
+
         public void displayMeeting(Meeting meet){
             meetingName.setText(meet.getNameOfMeeting());
             rooms.setText(meet.getRoom().getName());

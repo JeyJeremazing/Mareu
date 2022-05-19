@@ -12,7 +12,7 @@ public abstract class DummyMeetingGenerator {
 
     public static List<Meeting> DUMMY_ATTENDEES = Arrays.asList(
             new Meeting("Réunion",new Room("Yoda"),"jeremy@jeymail.fr"),
-            new Meeting("Réunion",new Room("Wookies"),"jeremy@jeymail.fr,clarissabella@hotmail.fr"),
+            new Meeting("Réunion",new Room("Wookies"),"jeremy@jeymail.fr,"),
             new Meeting("Réunion",new Room("Jedi"),"jeremy@jeymail.fr"),
             new Meeting("Réunion",new Room("Sith"),"jeremy@jeymail.fr"),
             new Meeting("Réunion",new Room("Rancor"),"jeremy@jeymail.fr"),

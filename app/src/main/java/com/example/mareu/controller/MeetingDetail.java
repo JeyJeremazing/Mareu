@@ -24,7 +24,6 @@ import java.util.List;
 
 public class MeetingDetail extends AppCompatActivity  {
 
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -34,16 +33,13 @@ public class MeetingDetail extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_details);
         displayingRecyclerView();
-
     }
 
     public void displayingRecyclerView() {
-
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new MeetingAdapter(DummyMeetingGenerator.DUMMY_ATTENDEES);
-
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
