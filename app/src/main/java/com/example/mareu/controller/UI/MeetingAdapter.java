@@ -49,6 +49,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             meetingName = itemView.findViewById(R.id.meeting);
             rooms = itemView.findViewById(R.id.room);
             attendeesMail = itemView.findViewById(R.id.attendeesMail);
+
         }
 
         public void displayMeeting(Meeting meet){
