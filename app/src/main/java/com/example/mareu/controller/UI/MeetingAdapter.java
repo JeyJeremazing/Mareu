@@ -1,7 +1,7 @@
 package com.example.mareu.controller.UI;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +11,13 @@ import com.example.mareu.R;
 import com.example.mareu.model.Meeting;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
 
-   private final ArrayList<Meeting> mMeetings;
+   private final List<Meeting> mMeetings;
 
-    public MeetingAdapter(ArrayList<Meeting> meetings)  {
+    public MeetingAdapter(List<Meeting> meetings)  {
         this.mMeetings = meetings; }
 
     @NonNull

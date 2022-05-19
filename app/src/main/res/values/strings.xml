@@ -4,5 +4,9 @@
     <string name="heure">Heure</string>
     <string name="salle">Salle</string>
     <string name="m_il_participants">m@il_participants</string>
+    <string name="ordre_du_jour_de_la_r_union">Ordre du jour de la réunion</string>
+    <string name="entre_ton_mail">Entre ton mail</string>
+    <string name="dans_quelle_salle">Dans quelle salle ?</string>
+    <string name="la_reunion">Réunion</string>
 
 </resources>
