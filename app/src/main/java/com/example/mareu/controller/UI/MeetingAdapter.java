@@ -54,7 +54,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
         public void displayMeeting(Meeting meet){
             meetingName.setText(meet.getNameOfMeeting());
-            rooms.setText(meet.getRoom().getName());
+            rooms.setText(meet.getRoom());
             attendeesMail.setText(meet.getAttendeesMail());
         }
     }

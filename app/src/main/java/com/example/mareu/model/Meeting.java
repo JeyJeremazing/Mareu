@@ -4,10 +4,10 @@ package com.example.mareu.model;
 public class Meeting {
 
     private String nameOfMeeting;
-    private Room room;
+    private String room;
     private String attendeesMail;
 
-    public Meeting(String nameOfMeeting, Room room, String attendeesMail) {
+    public Meeting(String nameOfMeeting, String room, String attendeesMail) {
         this.nameOfMeeting = nameOfMeeting;
         this.attendeesMail = attendeesMail;
         this.room = room;
@@ -17,9 +17,9 @@ public class Meeting {
 
     public void setNameOfMeeting(String nameOfMeeting) { this.nameOfMeeting = nameOfMeeting; }
 
-    public Room getRoom() { return room; }
+    public String getRoom() { return room; }
 
-    public void setRoom(Room room) { this.room = room; }
+    public void setRoom(String room) { this.room = room; }
 
     public String getAttendeesMail() { return attendeesMail; }
 
