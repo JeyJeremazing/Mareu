@@ -1,28 +1,20 @@
 package com.example.mareu.controller;
 
-import android.app.DatePickerDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.DatePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mareu.DI.DI;
-import com.example.mareu.R;
 import com.example.mareu.controller.UI.AddMeeting;
 import com.example.mareu.controller.UI.MeetingAdapter;
 import com.example.mareu.databinding.ActivityMeetingDetailsBinding;
 import com.example.mareu.model.Meeting;
-import com.example.mareu.service.DummyMeetingGenerator;
 import com.example.mareu.service.MeetingApiService;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 import java.util.ArrayList;
 

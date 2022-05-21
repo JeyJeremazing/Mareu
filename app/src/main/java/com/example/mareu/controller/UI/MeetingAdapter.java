@@ -1,5 +1,7 @@
 package com.example.mareu.controller.UI;
 
+import static androidx.appcompat.widget.AppCompatDrawableManager.get;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,8 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.displayMeeting(mMeetings.get(position));
+        Meeting meetings= mMeetings.get(position);
+        holder.displayMeeting(meetings);
 
 
     }
@@ -44,26 +47,26 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public final TextView meetingName;
-        public final TextView rooms;
-        public final TextView attendeesMail;
-        public final TextView date;
+        public final TextView meetingText;
+        public final TextView roomText;
+        public final TextView attendeesMailText;
+        public final TextView dateText;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            meetingName = itemView.findViewById(R.id.meeting);
-            rooms = itemView.findViewById(R.id.room);
-            attendeesMail = itemView.findViewById(R.id.attendeesMail);
-            date = itemView.findViewById(R.id.date);
+            meetingText = itemView.findViewById(R.id.meetingText);
+            roomText = itemView.findViewById(R.id.roomText);
+            attendeesMailText = itemView.findViewById(R.id.attendeesMailText);
+            dateText = itemView.findViewById(R.id.dateText);
 
         }
 
         public void displayMeeting(Meeting meet){
-            meetingName.setText(meet.getNameOfMeeting());
-            rooms.setText(meet.getRoom());
-            attendeesMail.setText(meet.getAttendeesMail());
-
+            meetingText.setText(meet.getNameOfMeeting());
+            roomText.setText(meet.getRoom());
+            attendeesMailText.setText(meet.getAttendeesMail());
+            dateText.setText(meet.getDate());
         }
     }
 }

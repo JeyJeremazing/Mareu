@@ -21,7 +21,7 @@
          />
 
     <TextView
-        android:id="@+id/meeting"
+        android:id="@+id/meetingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/hours"
+        android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -41,11 +41,11 @@
         android:text="@string/heure"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/meeting"
+        app:layout_constraintStart_toEndOf="@+id/meetingText"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/room"
+        android:id="@+id/roomText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -53,11 +53,11 @@
         android:text="@string/salle"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/hours"
+        app:layout_constraintStart_toEndOf="@+id/dateText"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/attendeesMail"
+        android:id="@+id/attendeesMailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 android:layout_margin="16dp"

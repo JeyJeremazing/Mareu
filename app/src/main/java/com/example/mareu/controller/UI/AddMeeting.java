@@ -54,13 +54,14 @@ public class AddMeeting extends AppCompatActivity implements View.OnClickListene
             binding.attendeesMail.setError("Taper votre adresse mail");
             return;
         }
-        if (date.isEmpty()){
-            binding.date.setError("Choissisez la date");
-            return;
-        }
         if (meeting.isEmpty()){
             binding.meeting.setError("Taper le thème de votre réunion");
             return;
+        }
+        if (date.isEmpty()){
+            binding.date.setError("Choissisez la date");
+            return;
+
         }
         if (room.isEmpty()){
             binding.room.setError("Taper la salle ou aura lieu la réunion");
@@ -68,6 +69,6 @@ public class AddMeeting extends AppCompatActivity implements View.OnClickListene
         }
 
         mMeetingApiService.createMeetings(new Meeting(mail,meeting,date,room));
-        Toast.makeText(this,"Réunion crée !", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Réunion créé !", Toast.LENGTH_SHORT).show();
         finish();
     }}
