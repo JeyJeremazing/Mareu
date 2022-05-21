@@ -39,7 +39,6 @@ public class MeetingDetail extends AppCompatActivity implements View.OnClickList
         binding.recyclerView.setLayoutManager(layoutManager);
 
         MeetingAdapter mAdapter = new MeetingAdapter(mMeetingArrayList);
-        // Set CustomAdapter as the adapter for RecyclerView.
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerView.getContext(),
                 layoutManager.getOrientation());
         binding.recyclerView.addItemDecoration(dividerItemDecoration);
@@ -53,6 +52,7 @@ public class MeetingDetail extends AppCompatActivity implements View.OnClickList
     private void setButton() {
         binding.floatingActionButton.setOnClickListener(this);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

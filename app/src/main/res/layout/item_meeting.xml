@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:id="@+id/constraint"
     >
 
     <ImageView
@@ -25,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/r_union"
+        android:layout_marginStart="8dp"
+
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/circle"
@@ -38,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
-        android:text="@string/heure"
+
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/meetingText"
@@ -50,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
-        android:text="@string/salle"
+
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/dateText"
@@ -60,8 +59,7 @@
         android:id="@+id/attendeesMailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_margin="16dp"
-        android:text="@string/m_il_participants"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/circle" />
 
@@ -70,14 +68,13 @@ android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:background="@null"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:background="@null"
         app:layout_constraintBottom_toBottomOf="@+id/circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/circle"
-        app:srcCompat="@drawable/ic_baseline_delete_24"
-        tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck" />
+        app:srcCompat="@drawable/ic_baseline_delete_24"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,15 +17,6 @@ public abstract class DummyMeetingGenerator {
             new Meeting("Réunion ","Grogu","jeremy@jeymail.fr",""),
             new Meeting("Réunion","Mandalorian","jeremy@jeymail.fr",""),
             new Meeting("Réunion","Darth Vader","jeremy@jeymail.fr",""),
-            new Meeting("Réunion","Darth Sidious","jerome@jeymail.fr",""),
-            new Meeting("Réunion","Yoda","jeremy@jeymail.fr",""),
-            new Meeting("Réunion","Wookies","jeremy@jeymail.fr",""),
-            new Meeting("Réunion","Jedi","jeremy@jeymail.fr",""),
-            new Meeting("Réunion","Sith","jeremy@jeymail.fr",""),
-            new Meeting("Réunion","Rancor","jeremy@jeymail.fr",""),
-            new Meeting("Réunion","Grogu","jeremy@jeymail.fr",""),
-            new Meeting("Réunion","Mandalorian","jeremy@jeymail.fr",""),
-            new Meeting("Réunion","Darth Vader","jeremy@jeymail.fr",""),
             new Meeting("Réunion","Darth Sidious","jerome@jeymail.fr","")
     );
 
