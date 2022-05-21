@@ -7,10 +7,10 @@ import java.util.List;
 
 public class DummyMeetingsApiService implements MeetingApiService {
 
-    private List<Meeting> meetings= DummyMeetingGenerator.generateMeetings();
+    private final List<Meeting> meetings= DummyMeetingGenerator.generateMeetings();
 
     @Override
-    public Meeting getMeetings() { return (Meeting) meetings; }
+    public List<Meeting> getMeetings() { return meetings; }
 
     @Override
     public void deleteMeetings(Meeting meeting) { meetings.remove(meeting); }
