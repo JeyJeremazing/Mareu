@@ -1,21 +1,14 @@
 package com.example.mareu.controller.UI;
 
-import static androidx.appcompat.widget.AppCompatDrawableManager.get;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mareu.R;
 import com.example.mareu.model.Meeting;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
 
@@ -34,7 +27,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         Meeting meetings= mMeetings.get(position);
         holder.displayMeeting(meetings);
 
@@ -59,7 +52,6 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             roomText = itemView.findViewById(R.id.roomText);
             attendeesMailText = itemView.findViewById(R.id.attendeesMailText);
             dateText = itemView.findViewById(R.id.dateText);
-
         }
 
         public void displayMeeting(Meeting meet){

@@ -43,6 +43,12 @@ public class MeetingDetail extends AppCompatActivity implements View.OnClickList
                 layoutManager.getOrientation());
         binding.recyclerView.addItemDecoration(dividerItemDecoration);
         binding.recyclerView.setAdapter(mAdapter);
+
+    }
+    private void addNewMeeting() {
+        mMeetingArrayList.clear();
+        mMeetingArrayList.addAll(mMeetingApiService.getMeetings());
+        binding.recyclerView.getAdapter().notifyDataSetChanged();
     }
 
     private void initData() {
@@ -60,15 +66,19 @@ public class MeetingDetail extends AppCompatActivity implements View.OnClickList
         initData();
         initUI();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        addNewMeeting();
+    }
 
     @Override
     public void onClick(View view) {
         if (view == binding.floatingActionButton) {
             startActivity(new Intent(this, AddMeeting.class));
+
+
         }
     }
-
-
-
 }
 
