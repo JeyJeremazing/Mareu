@@ -34,17 +34,15 @@ public class MeetingDetail extends AppCompatActivity implements View.OnClickList
     }
 
     private void initRecyclerView() {
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recyclerView.setLayoutManager(layoutManager);
-
         MeetingAdapter mAdapter = new MeetingAdapter(mMeetingArrayList);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerView.getContext(),
                 layoutManager.getOrientation());
         binding.recyclerView.addItemDecoration(dividerItemDecoration);
         binding.recyclerView.setAdapter(mAdapter);
-
     }
+
     private void addNewMeeting() {
         mMeetingArrayList.clear();
         mMeetingArrayList.addAll(mMeetingApiService.getMeetings());

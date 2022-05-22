@@ -3,6 +3,7 @@ package com.example.mareu.controller.UI;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +24,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,  int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_meeting,parent,false);
-        return new ViewHolder(view);
+        return new ViewHolder(view).linkAdapter(this);
     }
 
     @Override
@@ -34,16 +35,21 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     }
 
+
     @Override
     public int getItemCount() {
         return mMeetings.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        private MeetingAdapter adapter;
+
         public final TextView meetingText;
         public final TextView roomText;
         public final TextView attendeesMailText;
         public final TextView dateText;
+        public ImageView mDeleteImage;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -52,6 +58,20 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             roomText = itemView.findViewById(R.id.roomText);
             attendeesMailText = itemView.findViewById(R.id.attendeesMailText);
             dateText = itemView.findViewById(R.id.dateText);
+            mDeleteImage = itemView.findViewById(R.id.delete_button);
+
+            mDeleteImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+            adapter.mMeetings.remove(getAdapterPosition());
+            adapter.notifyItemRemoved(getAdapterPosition());
+                }
+            });
+        }
+
+        public ViewHolder linkAdapter(MeetingAdapter adapter) {
+            this.adapter= adapter;
+            return this;
         }
 
         public void displayMeeting(Meeting meet){
@@ -60,5 +80,6 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             attendeesMailText.setText(meet.getAttendeesMail());
             dateText.setText(meet.getDate());
         }
+
     }
 }
