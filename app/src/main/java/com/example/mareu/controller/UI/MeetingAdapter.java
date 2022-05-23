@@ -7,15 +7,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mareu.DI.DI;
 import com.example.mareu.R;
 import com.example.mareu.model.Meeting;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
 
-   private final ArrayList<Meeting> mMeetings;
+   private List<Meeting> mMeetings;
 
-    public MeetingAdapter(ArrayList<Meeting> meetings)  {
+    public MeetingAdapter(List<Meeting> meetings)  {
         this.mMeetings = meetings;
     }
 
@@ -31,10 +34,13 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         Meeting meetings= mMeetings.get(position);
         holder.displayMeeting(meetings);
-
-
     }
 
+    public void updateList(List<Meeting> mMeeting){
+        this.mMeetings = mMeeting;
+        notifyDataSetChanged();
+
+    }
 
     @Override
     public int getItemCount() {
@@ -42,15 +48,12 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
         private MeetingAdapter adapter;
-
         public final TextView meetingText;
         public final TextView roomText;
         public final TextView attendeesMailText;
         public final TextView dateText;
         public ImageView mDeleteImage;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,8 +66,9 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             mDeleteImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-            adapter.mMeetings.remove(getAdapterPosition());
-            adapter.notifyItemRemoved(getAdapterPosition());
+                    Meeting meeting = adapter.mMeetings.get(getAdapterPosition());
+                    DI.getMeetingApiService().deleteMeetings(meeting);
+                    adapter.updateList(DI.getMeetingApiService().getMeetings());
                 }
             });
         }
@@ -80,6 +84,5 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             attendeesMailText.setText(meet.getAttendeesMail());
             dateText.setText(meet.getDate());
         }
-
     }
 }

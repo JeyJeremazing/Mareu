@@ -13,7 +13,7 @@
             android:name=".controller.UI.AddMeeting"
             android:exported="false" />
         <activity
-            android:name=".controller.MeetingDetail"
+            android:name=".controller.MeetingsListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

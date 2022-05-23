@@ -19,11 +19,12 @@ import com.example.mareu.service.MeetingApiService;
 import java.util.ArrayList;
 
 
-public class MeetingDetail extends AppCompatActivity implements View.OnClickListener {
+public class MeetingsListActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityMeetingDetailsBinding binding;
-    private ArrayList<Meeting> mMeetingArrayList = new ArrayList<>();
     private MeetingApiService mMeetingApiService = DI.getMeetingApiService();
+    private MeetingAdapter mAdapter;
+
 
     private void initUI() {
         binding = ActivityMeetingDetailsBinding.inflate(getLayoutInflater());
@@ -36,21 +37,11 @@ public class MeetingDetail extends AppCompatActivity implements View.OnClickList
     private void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recyclerView.setLayoutManager(layoutManager);
-        MeetingAdapter mAdapter = new MeetingAdapter(mMeetingArrayList);
+        mAdapter = new MeetingAdapter(new ArrayList<>(mMeetingApiService.getMeetings()));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerView.getContext(),
                 layoutManager.getOrientation());
         binding.recyclerView.addItemDecoration(dividerItemDecoration);
         binding.recyclerView.setAdapter(mAdapter);
-    }
-
-    private void addNewMeeting() {
-        mMeetingArrayList.clear();
-        mMeetingArrayList.addAll(mMeetingApiService.getMeetings());
-        binding.recyclerView.getAdapter().notifyDataSetChanged();
-    }
-
-    private void initData() {
-        mMeetingArrayList =  new ArrayList<>(mMeetingApiService.getMeetings());
     }
 
     private void setButton() {
@@ -61,13 +52,13 @@ public class MeetingDetail extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData();
+       // initData();
         initUI();
     }
     @Override
     protected void onResume() {
         super.onResume();
-        addNewMeeting();
+        mAdapter.updateList(mMeetingApiService.getMeetings());
     }
 
     @Override
