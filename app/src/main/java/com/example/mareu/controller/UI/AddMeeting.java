@@ -22,16 +22,11 @@ public class AddMeeting extends AppCompatActivity implements View.OnClickListene
         setContentView(view);
         setButton();
         getSupportActionBar().setTitle("Nouvelle Réunion");
+
     }
 
     private void setButton() {
         binding.createMeetingButton.setOnClickListener(this);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initUI();
     }
 
     @Override
@@ -41,6 +36,11 @@ public class AddMeeting extends AppCompatActivity implements View.OnClickListene
         }
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initUI();
+    }
     private void  onCreateButton(){
         String attendeesMail = binding.attendeesMail.getEditText().getText().toString();
         String date = binding.date.getEditText().getText().toString();

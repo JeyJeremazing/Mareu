@@ -34,6 +34,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         Meeting meetings= mMeetings.get(position);
         holder.displayMeeting(meetings);
+
     }
 
     public void updateList(List<Meeting> mMeeting){
@@ -49,6 +50,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private MeetingAdapter adapter;
+
         public final TextView meetingText;
         public final TextView roomText;
         public final TextView attendeesMailText;

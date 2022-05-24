@@ -52,7 +52,6 @@ public class MeetingsListActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // initData();
         initUI();
     }
     @Override
