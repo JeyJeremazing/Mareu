@@ -20,8 +20,6 @@ import com.example.mareu.model.Meeting;
 import com.example.mareu.service.ItemClickSupport;
 import com.example.mareu.service.MeetingApiService;
 
-import java.util.ArrayList;
-
 
 public class MeetingsListActivity extends AppCompatActivity implements MeetingAdapter.Listener {
 
@@ -42,7 +40,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     private void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new MeetingAdapter(this.mMeetingApiService.getMeetings(),this);
+        mAdapter = new MeetingAdapter(this.mMeetingApiService.getMeetings(), this);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerView.getContext(),
                 layoutManager.getOrientation());
         binding.recyclerView.addItemDecoration(dividerItemDecoration);
@@ -70,21 +68,24 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
         mAdapter.updateList(mMeetingApiService.getMeetings());
     }
 
-    private void configureOnClickRecyclerView(){
+    private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(binding.recyclerView, R.layout.item_meeting)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                         meeting = mAdapter.getOneMeeting(position);
-                        Toast.makeText(getApplicationContext(),"Réunion : "+meeting.getNameOfMeeting(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Réunion : " + meeting.getNameOfMeeting(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     @Override
     public void onClickDeleteButton(int position) {
-      meeting = mAdapter.getOneMeeting(position);
-        Toast.makeText(getApplicationContext(),"Vous avez supprimé : "+meeting.getNameOfMeeting(),Toast.LENGTH_SHORT).show();
+        meeting = mAdapter.getOneMeeting(position);
+        DI.getMeetingApiService().deleteMeetings(meeting);
+        mAdapter.updateList(DI.getMeetingApiService().getMeetings());
+
+        Toast.makeText(getApplicationContext(), "Vous avez supprimé : " + meeting.getNameOfMeeting(), Toast.LENGTH_SHORT).show();
 
 
     }

@@ -5,9 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.example.mareu.R;
 import com.example.mareu.model.Meeting;
@@ -17,14 +17,15 @@ import java.util.List;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
 
-    public interface Listener{
+    public interface Listener {
         void onClickDeleteButton(int position);
     }
+
     public final Listener callback;
 
     private List<Meeting> mMeetings;
 
-    public MeetingAdapter(List<Meeting> meetings,Listener callback)  {
+    public MeetingAdapter(List<Meeting> meetings, Listener callback) {
         this.mMeetings = meetings;
         this.callback = callback;
 
@@ -32,20 +33,20 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,  int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_meeting,parent,false);
+                .inflate(R.layout.item_meeting, parent, false);
         return new ViewHolder(view).linkAdapter(this);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
-        holder.displayMeeting(this.mMeetings.get(position),callback);
+        holder.displayMeeting(this.mMeetings.get(position), callback);
 
     }
 
-    public void updateList(List<Meeting> mMeeting){
+    public void updateList(List<Meeting> mMeeting) {
         this.mMeetings = mMeeting;
         notifyDataSetChanged();
 
@@ -56,9 +57,10 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         return mMeetings.size();
     }
 
-    public Meeting getOneMeeting(int position){
+    public Meeting getOneMeeting(int position) {
         return this.mMeetings.get(position);
     }
+
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private MeetingAdapter adapter;
 
@@ -68,7 +70,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         public final TextView dateText;
         public ImageView mDeleteImage;
 
-        private WeakReference<MeetingAdapter.Listener>callbackWeakRef;
+        private WeakReference<MeetingAdapter.Listener> callbackWeakRef;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,11 +82,11 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         }
 
         public ViewHolder linkAdapter(MeetingAdapter adapter) {
-            this.adapter= adapter;
+            this.adapter = adapter;
             return this;
         }
 
-        public void displayMeeting(Meeting meeting,Listener callback){
+        public void displayMeeting(Meeting meeting, Listener callback) {
             meetingText.setText(meeting.getNameOfMeeting());
             roomText.setText(meeting.getRoom());
             attendeesMailText.setText(meeting.getAttendeesMail());
@@ -95,8 +97,9 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
         @Override
         public void onClick(View v) {
-        MeetingAdapter.Listener callback = callbackWeakRef.get();
-        if(callback!= null) callback.onClickDeleteButton(getAdapterPosition());
+            MeetingAdapter.Listener callback = callbackWeakRef.get();
+            if (callback != null) callback.onClickDeleteButton(getAdapterPosition());
+
         }
     }
 }
