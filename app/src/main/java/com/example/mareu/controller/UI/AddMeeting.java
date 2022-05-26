@@ -42,10 +42,12 @@ public class AddMeeting extends AppCompatActivity implements View.OnClickListene
         initUI();
     }
     private void  onCreateButton(){
+
         String attendeesMail = binding.attendeesMail.getEditText().getText().toString();
         String date = binding.date.getEditText().getText().toString();
         String nameOfMeeting = binding.meeting.getEditText().getText().toString();
         String room = binding.room.getEditText().getText().toString();
+        int meetingID;
 
         if (attendeesMail.isEmpty()){
             binding.attendeesMail.setError("Taper votre adresse mail");
@@ -63,7 +65,7 @@ public class AddMeeting extends AppCompatActivity implements View.OnClickListene
             binding.room.setError("Taper la salle ou aura lieu la réunion");
             return;
         }
-        mMeetingApiService.createMeetings(new Meeting(nameOfMeeting,room,attendeesMail,date));
+        mMeetingApiService.createMeetings(new Meeting(00,nameOfMeeting,room,attendeesMail,date));
         Toast.makeText(this,"Réunion créé !", Toast.LENGTH_SHORT).show();
         finish();
 

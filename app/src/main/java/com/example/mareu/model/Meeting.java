@@ -3,17 +3,21 @@ package com.example.mareu.model;
 
 public class Meeting {
 
+    private int meetingID;
     private String nameOfMeeting;
     private String room;
     private String attendeesMail;
     private String date;
 
-    public Meeting(String nameOfMeeting, String room, String attendeesMail,String date) {
+    public Meeting(int meetingID, String nameOfMeeting, String room, String attendeesMail,String date) {
+        this.meetingID = meetingID;
         this.nameOfMeeting = nameOfMeeting;
         this.attendeesMail = attendeesMail;
         this.room = room;
         this.date = date;
     }
+
+    public int getMeetingID() { return meetingID; }
 
     public String getNameOfMeeting() { return nameOfMeeting; }
 

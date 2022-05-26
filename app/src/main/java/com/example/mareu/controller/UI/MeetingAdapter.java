@@ -8,18 +8,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mareu.DI.DI;
+
 import com.example.mareu.R;
 import com.example.mareu.model.Meeting;
-import java.util.ArrayList;
+
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
 
+    public interface Listener{
+        void onClickDeleteButton(int position);
+    }
+    public final Listener callback;
+
     private List<Meeting> mMeetings;
 
-    public MeetingAdapter(List<Meeting> meetings)  {
+    public MeetingAdapter(List<Meeting> meetings,Listener callback)  {
         this.mMeetings = meetings;
+        this.callback = callback;
+
     }
 
     @NonNull
@@ -32,8 +40,8 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
-        Meeting meetings= mMeetings.get(position);
-        holder.displayMeeting(meetings);
+
+        holder.displayMeeting(this.mMeetings.get(position),callback);
 
     }
 
@@ -48,7 +56,10 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         return mMeetings.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public Meeting getOneMeeting(int position){
+        return this.mMeetings.get(position);
+    }
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private MeetingAdapter adapter;
 
         public final TextView meetingText;
@@ -57,6 +68,8 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         public final TextView dateText;
         public ImageView mDeleteImage;
 
+        private WeakReference<MeetingAdapter.Listener>callbackWeakRef;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             meetingText = itemView.findViewById(R.id.meetingText);
@@ -64,15 +77,6 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             attendeesMailText = itemView.findViewById(R.id.attendeesMailText);
             dateText = itemView.findViewById(R.id.dateText);
             mDeleteImage = itemView.findViewById(R.id.delete_button);
-
-            mDeleteImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Meeting meeting = adapter.mMeetings.get(getAdapterPosition());
-                    DI.getMeetingApiService().deleteMeetings(meeting);
-                    adapter.updateList(DI.getMeetingApiService().getMeetings());
-                }
-            });
         }
 
         public ViewHolder linkAdapter(MeetingAdapter adapter) {
@@ -80,11 +84,19 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             return this;
         }
 
-        public void displayMeeting(Meeting meet){
-            meetingText.setText(meet.getNameOfMeeting());
-            roomText.setText(meet.getRoom());
-            attendeesMailText.setText(meet.getAttendeesMail());
-            dateText.setText(meet.getDate());
+        public void displayMeeting(Meeting meeting,Listener callback){
+            meetingText.setText(meeting.getNameOfMeeting());
+            roomText.setText(meeting.getRoom());
+            attendeesMailText.setText(meeting.getAttendeesMail());
+            dateText.setText(meeting.getDate());
+            this.callbackWeakRef = new WeakReference<MeetingAdapter.Listener>(callback);
+            this.mDeleteImage.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+        MeetingAdapter.Listener callback = callbackWeakRef.get();
+        if(callback!= null) callback.onClickDeleteButton(getAdapterPosition());
         }
     }
 }
