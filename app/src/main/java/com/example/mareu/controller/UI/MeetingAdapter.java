@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
 
-   private List<Meeting> mMeetings;
+    private List<Meeting> mMeetings;
 
     public MeetingAdapter(List<Meeting> meetings)  {
         this.mMeetings = meetings;

@@ -8,26 +8,25 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.mareu.DI.DI;
 import com.example.mareu.controller.UI.AddMeeting;
 import com.example.mareu.controller.UI.MeetingAdapter;
-import com.example.mareu.databinding.ActivityMeetingDetailsBinding;
-import com.example.mareu.model.Meeting;
+import com.example.mareu.databinding.ActivityMeetingListBinding;
 import com.example.mareu.service.MeetingApiService;
-
 
 import java.util.ArrayList;
 
 
 public class MeetingsListActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ActivityMeetingDetailsBinding binding;
+    ActivityMeetingListBinding binding;
     private MeetingApiService mMeetingApiService = DI.getMeetingApiService();
     private MeetingAdapter mAdapter;
 
 
     private void initUI() {
-        binding = ActivityMeetingDetailsBinding.inflate(getLayoutInflater());
+        binding = ActivityMeetingListBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         setButton();
@@ -54,6 +53,7 @@ public class MeetingsListActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         initUI();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -69,4 +69,3 @@ public class MeetingsListActivity extends AppCompatActivity implements View.OnCl
         }
     }
 }
-
