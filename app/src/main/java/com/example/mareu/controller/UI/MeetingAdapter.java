@@ -13,6 +13,8 @@ import com.example.mareu.R;
 import com.example.mareu.model.Meeting;
 
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
@@ -25,7 +27,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     private List<Meeting> mMeetings;
 
-    public MeetingAdapter(List<Meeting> meetings, Listener callback) {
+    public MeetingAdapter(ArrayList<Meeting> meetings, Listener callback) {
         this.mMeetings = meetings;
         this.callback = callback;
 
@@ -87,10 +89,13 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         }
 
         public void displayMeeting(Meeting meeting, Listener callback) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
             meetingText.setText(meeting.getNameOfMeeting());
             roomText.setText(meeting.getRoom());
             attendeesMailText.setText(meeting.getAttendeesMail());
-            dateText.setText(meeting.getDate());
+            dateText.setText(simpleDateFormat.format(meeting.getDate()));
+
             this.callbackWeakRef = new WeakReference<MeetingAdapter.Listener>(callback);
             this.mDeleteImage.setOnClickListener(this);
         }

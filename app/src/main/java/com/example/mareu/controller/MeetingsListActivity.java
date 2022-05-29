@@ -1,11 +1,17 @@
 package com.example.mareu.controller;
 
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,13 +26,16 @@ import com.example.mareu.model.Meeting;
 import com.example.mareu.service.ItemClickSupport;
 import com.example.mareu.service.MeetingApiService;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 
 public class MeetingsListActivity extends AppCompatActivity implements MeetingAdapter.Listener {
 
     ActivityMeetingListBinding binding;
     private MeetingApiService mMeetingApiService = DI.getMeetingApiService();
     private MeetingAdapter mAdapter;
-    private Meeting meeting;
+    private ArrayList<Meeting> meetingArrayList = new ArrayList<>();
 
 
     private void initUI() {
@@ -40,7 +49,8 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     private void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new MeetingAdapter(this.mMeetingApiService.getMeetings(), this);
+
+        mAdapter = new MeetingAdapter(meetingArrayList, this);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerView.getContext(),
                 layoutManager.getOrientation());
         binding.recyclerView.addItemDecoration(dividerItemDecoration);
@@ -58,14 +68,73 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initData();
         initUI();
         configureOnClickRecyclerView();
+
     }
+
+    private void initData() {
+        meetingArrayList = new ArrayList<>(mMeetingApiService.getMeetings());
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.filter_date:
+                dateDialog();
+                return true;
+            case R.id.filter_reset:
+                resetFilter();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    private void resetFilter() {
+        meetingArrayList.clear();
+        meetingArrayList.addAll(mMeetingApiService.getMeetings());
+        binding.recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    private void dateDialog() {
+        int selectedYear =2022;
+        int selectedMonth =5;
+        int selectedDayOfMonth=30;
+
+        // Date Select Listener
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Calendar cal = Calendar.getInstance();
+                cal.set(year,month,dayOfMonth);
+                meetingArrayList.clear();
+                meetingArrayList.addAll(mMeetingApiService.getMeetingsFilteredByDate(cal.getTime()));
+                binding.recyclerView.getAdapter().notifyDataSetChanged();
+
+            }
+        };
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                dateSetListener, selectedYear, selectedMonth, selectedDayOfMonth);
+
+        datePickerDialog.show();
+    }
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        mAdapter.updateList(mMeetingApiService.getMeetings());
+        resetFilter();
     }
 
     private void configureOnClickRecyclerView() {
@@ -73,7 +142,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        meeting = mAdapter.getOneMeeting(position);
+                        Meeting meeting = mAdapter.getOneMeeting(position);
                         Toast.makeText(getApplicationContext(), "Réunion : " + meeting.getNameOfMeeting(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -81,9 +150,10 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
 
     @Override
     public void onClickDeleteButton(int position) {
-        meeting = mAdapter.getOneMeeting(position);
+        Meeting meeting = mAdapter.getOneMeeting(position);
         DI.getMeetingApiService().deleteMeetings(meeting);
         mAdapter.updateList(DI.getMeetingApiService().getMeetings());
+
 
         Toast.makeText(getApplicationContext(), "Vous avez supprimé : " + meeting.getNameOfMeeting(), Toast.LENGTH_SHORT).show();
 
