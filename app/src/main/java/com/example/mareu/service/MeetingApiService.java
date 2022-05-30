@@ -15,5 +15,5 @@ public interface MeetingApiService {
 
     void createMeetings(Meeting meeting);
 
-    ArrayList<Meeting> getMeetingsFilteredByDate(Date date);
+    List<Meeting> getMeetingsFilteredByDate(Date date);
 }

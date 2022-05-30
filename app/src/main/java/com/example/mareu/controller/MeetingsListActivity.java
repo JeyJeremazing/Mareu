@@ -109,7 +109,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     private void dateDialog() {
         int selectedYear =2022;
         int selectedMonth =5;
-        int selectedDayOfMonth=30;
+        int selectedDayOfMonth=28;
 
         // Date Select Listener
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {

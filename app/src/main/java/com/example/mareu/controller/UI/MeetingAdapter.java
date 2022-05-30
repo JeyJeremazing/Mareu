@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mareu.R;
 import com.example.mareu.model.Meeting;
 
-import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +62,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         return this.mMeetings.get(position);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         private MeetingAdapter adapter;
 
         public final TextView meetingText;
@@ -71,8 +70,6 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         public final TextView attendeesMailText;
         public final TextView dateText;
         public ImageView mDeleteImage;
-
-        private WeakReference<MeetingAdapter.Listener> callbackWeakRef;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,15 +93,13 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             attendeesMailText.setText(meeting.getAttendeesMail());
             dateText.setText(simpleDateFormat.format(meeting.getDate()));
 
-            this.callbackWeakRef = new WeakReference<MeetingAdapter.Listener>(callback);
-            this.mDeleteImage.setOnClickListener(this);
-        }
 
-        @Override
-        public void onClick(View v) {
-            MeetingAdapter.Listener callback = callbackWeakRef.get();
-            if (callback != null) callback.onClickDeleteButton(getAdapterPosition());
-
+            this.mDeleteImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (callback != null) callback.onClickDeleteButton(getAdapterPosition());
+                }
+            });
         }
     }
 }

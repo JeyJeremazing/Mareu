@@ -22,7 +22,7 @@ public class DummyMeetingsApiService implements MeetingApiService {
     public void createMeetings(Meeting meeting) { meetings.add(meeting); }
 
     @Override
-    public ArrayList<Meeting> getMeetingsFilteredByDate(Date date) {
+    public List<Meeting> getMeetingsFilteredByDate(Date date) {
 
         ArrayList<Meeting> result = new ArrayList<>();
 
