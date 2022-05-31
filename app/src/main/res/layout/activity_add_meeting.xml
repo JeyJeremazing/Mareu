@@ -65,7 +65,8 @@
                android:layout_height="match_parent"
                android:layout_weight="1"
                android:cursorVisible="false"
-               android:enabled="false"
+               android:inputType="none|textNoSuggestions"
+
                />
 
             <Button
