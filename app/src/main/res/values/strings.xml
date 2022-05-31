@@ -11,6 +11,7 @@
     <string name="a_quelle_date">A quelle date?</string>
     <string name="intitul_de_la_r_union">Intitulé de la réunion</string>
     <string name="salle_">Salle?</string>
-    <string name="cr_er_une_nouvelle_r_union">Créer une nouvelle réunion</string>
+    <string name="créer_r_union">Créer une nouvelle réunion</string>
+    <string name = "select">Selectionner une salle</string>
 
 </resources>

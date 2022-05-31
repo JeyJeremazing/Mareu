@@ -11,6 +11,12 @@ import java.util.List;
 public class DummyMeetingsApiService implements MeetingApiService {
 
     private final List<Meeting> meetings= DummyMeetingGenerator.generateMeetings();
+    private final List<String> roomsList = DummyMeetingGenerator.roomsList();
+
+    @Override
+    public List<String> getRoomsList() {
+        return roomsList;
+    }
 
     @Override
     public List<Meeting> getMeetings() { return meetings; }

@@ -156,7 +156,5 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
 
 
         Toast.makeText(getApplicationContext(), "Vous avez supprimé : " + meeting.getNameOfMeeting(), Toast.LENGTH_SHORT).show();
-
-
     }
 }

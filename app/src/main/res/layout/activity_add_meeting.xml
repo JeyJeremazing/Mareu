@@ -44,26 +44,26 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/room"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:hint="@string/salle_"
+            android:hint="@string/select"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/meeting">
+            app:layout_constraintTop_toBottomOf="@id/meeting"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                 />
-
+           <AutoCompleteTextView
+               android:id="@+id/auto_complete_txt"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:inputType="none"/>
             <Button
                 android:id="@+id/createMeetingButton"
                 android:layout_width="match_parent"
@@ -71,7 +71,8 @@
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/white"
                 android:onClick="onClick"
-                android:text="@string/cr_er_une_nouvelle_r_union"
+                android:text="@string/créer_r_union"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/room" />

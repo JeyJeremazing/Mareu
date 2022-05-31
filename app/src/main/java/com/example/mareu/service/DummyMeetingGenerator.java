@@ -20,9 +20,11 @@ public abstract class DummyMeetingGenerator {
 
     );
 
-    public static List<String> ROOMS = Arrays.asList("Yoda","Wookies");
+    public static List<String> ROOMS = Arrays.asList("Yoda","Wookies","Jedi","Sith","Rancor","Grogu","Ewoks");
 
     static List<Meeting> generateMeetings() {
         return new ArrayList<>(DUMMY_ATTENDEES);
     }
+
+    static List<String> roomsList (){return new ArrayList<>(ROOMS);}
 }

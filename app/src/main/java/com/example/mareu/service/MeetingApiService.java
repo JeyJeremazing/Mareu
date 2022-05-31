@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface MeetingApiService {
 
+    List<String> getRoomsList();
+
     List<Meeting> getMeetings();
 
     void deleteMeetings(Meeting meeting);
@@ -16,4 +18,5 @@ public interface MeetingApiService {
     void createMeetings(Meeting meeting);
 
     List<Meeting> getMeetingsFilteredByDate(Date date);
+
 }
