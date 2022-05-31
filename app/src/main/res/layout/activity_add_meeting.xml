@@ -63,7 +63,11 @@
                android:id="@+id/auto_complete_txt"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
-               android:inputType="none"/>
+               android:layout_weight="1"
+               android:cursorVisible="false"
+               android:enabled="false"
+               />
+
             <Button
                 android:id="@+id/createMeetingButton"
                 android:layout_width="match_parent"
