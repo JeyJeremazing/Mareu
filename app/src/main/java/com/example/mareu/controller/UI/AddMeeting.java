@@ -56,8 +56,8 @@ public class AddMeeting extends AppCompatActivity implements DatePickerDialog.On
         c.set(Calendar.YEAR,year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
-        binding.displayDate.setText(currentDateString);
+        SimpleDateFormat currentDateString = new SimpleDateFormat("dd-MM-yyyy");
+        binding.displayDate.setText(currentDateString.format(c.getTime()));
 
     }
 
