@@ -124,11 +124,6 @@ public class AddMeeting extends AppCompatActivity implements DatePickerDialog.On
             binding.room.setError("Choisissez votre Salle!");
             return;
         }
-      /*  if (date.isEmpty()) {
-            binding.room.setError("Choisissez votre date de réunion!");
-            return;
-        }*/
-
 
         mMeetingApiService.createMeetings(new Meeting(00, nameOfMeeting, room, attendeesMail, date));
         Toast.makeText(this, "Réunion créé !", Toast.LENGTH_SHORT).show();
