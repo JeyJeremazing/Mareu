@@ -11,14 +11,6 @@ public class Meeting {
     private String attendeesMail;
     private Date date;
 
-    public Meeting(int meetingID, String nameOfMeeting, String room, String attendeesMail) {
-        this.meetingID = meetingID;
-        this.nameOfMeeting = nameOfMeeting;
-        this.attendeesMail = attendeesMail;
-        this.room = room;
-        this.date = new Date();
-    }
-
     public Meeting(int meetingID, String nameOfMeeting, String room, String attendeesMail, Date date) {
         this.meetingID = meetingID;
         this.nameOfMeeting = nameOfMeeting;
@@ -61,4 +53,3 @@ public class Meeting {
 
 
 }
-
