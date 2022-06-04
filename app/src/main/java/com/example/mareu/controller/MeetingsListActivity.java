@@ -1,13 +1,16 @@
 package com.example.mareu.controller;
 
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -26,8 +29,10 @@ import com.example.mareu.model.Meeting;
 import com.example.mareu.service.ItemClickSupport;
 import com.example.mareu.service.MeetingApiService;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class MeetingsListActivity extends AppCompatActivity implements MeetingAdapter.Listener {
@@ -78,7 +83,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
         meetingArrayList = new ArrayList<>(mMeetingApiService.getMeetings());
     }
 
-
+    //Filter (Date,Rooms and reset)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -92,13 +97,52 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
             case R.id.filter_date:
                 dateDialog();
                 return true;
+
+            case R.id.filter_rooms:
+                roomsDialog();
+                return true;
+
             case R.id.filter_reset:
                 resetFilter();
             default:
                 return super.onOptionsItemSelected(item);
+
         }
 
     }
+
+    private void roomsDialog() {
+            //INSTANTIATE ALERTDIALOG BUILDER
+            AlertDialog.Builder myBuilder = new AlertDialog.Builder(MeetingsListActivity.this);
+            myBuilder.setTitle("Sélectionner une salle");
+
+            String[] rooms = {"Yoda", "Wookies", "Jedi", "Sith", "Rancor","Grogu","Ewoks"};
+            myBuilder.setItems(rooms, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0: // Yoda
+
+                    case 1: // Wookies
+
+                    case 2: // Jedi
+
+                    case 3: // Sith
+
+                    case 4: // Rancor
+
+                    case 5: // Grogu
+
+                    case 6: // Ewoks
+
+                }
+            }
+        });
+
+        AlertDialog dialog = myBuilder.create();
+        dialog.show();
+        }
+
 
     private void resetFilter() {
         meetingArrayList.clear();
@@ -112,7 +156,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
         int selectedDayOfMonth=28;
 
         // Date Select Listener
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+       DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Calendar cal = Calendar.getInstance();
