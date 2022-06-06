@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -29,8 +28,8 @@ import com.example.mareu.model.Meeting;
 import com.example.mareu.service.ItemClickSupport;
 import com.example.mareu.service.MeetingApiService;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -40,7 +39,6 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     ActivityMeetingListBinding binding;
     private MeetingApiService mMeetingApiService = DI.getMeetingApiService();
     private MeetingAdapter mAdapter;
-    private ArrayList<Meeting> meetingArrayList = new ArrayList<>();
 
 
     private void initUI() {
@@ -55,7 +53,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new MeetingAdapter(meetingArrayList, this);
+        mAdapter = new MeetingAdapter(mMeetingApiService.getMeetings(), this);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerView.getContext(),
                 layoutManager.getOrientation());
         binding.recyclerView.addItemDecoration(dividerItemDecoration);
@@ -73,14 +71,9 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData();
         initUI();
         configureOnClickRecyclerView();
 
-    }
-
-    private void initData() {
-        meetingArrayList = new ArrayList<>(mMeetingApiService.getMeetings());
     }
 
     //Filter (Date,Rooms and reset)
@@ -112,58 +105,41 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     }
 
     private void roomsDialog() {
-            //INSTANTIATE ALERTDIALOG BUILDER
-            AlertDialog.Builder myBuilder = new AlertDialog.Builder(MeetingsListActivity.this);
-            myBuilder.setTitle("Sélectionner une salle");
+        //INSTANTIATE ALERTDIALOG BUILDER
+        AlertDialog.Builder myBuilder = new AlertDialog.Builder(MeetingsListActivity.this);
+        myBuilder.setTitle("Sélectionner une salle");
 
-            String[] rooms = {"Yoda", "Wookies", "Jedi", "Sith", "Rancor","Grogu","Ewoks"};
-            myBuilder.setItems(rooms, new DialogInterface.OnClickListener() {
+        String[] rooms = mMeetingApiService.getRoomsList().toArray(new String[0]);
+
+        myBuilder.setItems(rooms, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0: // Yoda
 
-                    case 1: // Wookies
-
-                    case 2: // Jedi
-
-                    case 3: // Sith
-
-                    case 4: // Rancor
-
-                    case 5: // Grogu
-
-                    case 6: // Ewoks
-
-                }
             }
         });
 
         AlertDialog dialog = myBuilder.create();
         dialog.show();
-        }
+    }
 
 
     private void resetFilter() {
-        meetingArrayList.clear();
-        meetingArrayList.addAll(mMeetingApiService.getMeetings());
-        binding.recyclerView.getAdapter().notifyDataSetChanged();
+        mAdapter.updateList(mMeetingApiService.getMeetings());
+
     }
 
     private void dateDialog() {
-        int selectedYear =2022;
-        int selectedMonth =5;
-        int selectedDayOfMonth=28;
+        int selectedYear = 2022;
+        int selectedMonth = 5;
+        int selectedDayOfMonth = 28;
 
         // Date Select Listener
-       DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Calendar cal = Calendar.getInstance();
-                cal.set(year,month,dayOfMonth);
-                meetingArrayList.clear();
-                meetingArrayList.addAll(mMeetingApiService.getMeetingsFilteredByDate(cal.getTime()));
-                binding.recyclerView.getAdapter().notifyDataSetChanged();
+                cal.set(year, month, dayOfMonth);
+                mAdapter.updateList(mMeetingApiService.getMeetingsFilteredByDate(cal.getTime()));
 
             }
         };

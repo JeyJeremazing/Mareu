@@ -26,7 +26,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     private List<Meeting> mMeetings;
 
-    public MeetingAdapter(ArrayList<Meeting> meetings, Listener callback) {
+    public MeetingAdapter(List<Meeting> meetings, Listener callback) {
         this.mMeetings = meetings;
         this.callback = callback;
 

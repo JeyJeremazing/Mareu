@@ -47,7 +47,9 @@ public class DummyMeetingsApiService implements MeetingApiService {
     }
 
    @Override
-    public ArrayList<String> getRoomsFiltered(String rooms) {
-        return null;
+    public List<String> getRoomsFiltered(String rooms) {
+       ArrayList<Meeting> resultRooms = new ArrayList<>();
+
+       return null;
     }
 }
