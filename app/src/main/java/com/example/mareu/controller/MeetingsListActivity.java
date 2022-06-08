@@ -113,7 +113,11 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
 
         myBuilder.setItems(rooms, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int position) {
+                String room = rooms[position];
+               /*List<Meeting> meetingList = mMeetingApiService.getMeetingFilteredByRoom(room);
+               mAdapter.updateList(meetingList);*/
+                mAdapter.updateList(mMeetingApiService.getMeetingFilteredByRoom(room));
 
             }
         });

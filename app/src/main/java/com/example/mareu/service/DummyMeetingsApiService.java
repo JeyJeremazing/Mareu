@@ -47,9 +47,14 @@ public class DummyMeetingsApiService implements MeetingApiService {
     }
 
    @Override
-    public List<String> getRoomsFiltered(String rooms) {
+    public List<Meeting> getMeetingFilteredByRoom(String room) {
        ArrayList<Meeting> resultRooms = new ArrayList<>();
 
-       return null;
+       for (Meeting meeting:meetings){
+           if (meeting.getRoom().equals(room)){
+               resultRooms.add(meeting);
+           }
+       }
+       return resultRooms;
     }
 }
