@@ -4,6 +4,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertSame;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.junit.Assert.assertTrue;
 
 import com.example.mareu.model.Meeting;
@@ -65,7 +66,7 @@ public class DummyMeetingApiServiceTest {
         Meeting date2 = meetingsDates.get(1);
         meetingsDates = meetingsApiService.getMeetingsFilteredByDate(date.getDate());
         assertEquals(meetingsDates.size(),2);
-        assertSame(date.getDate(),date2.getDate());
+        assertThat(meetingsDates,containsInAnyOrder(date,date2));
 
 
     }
@@ -90,9 +91,8 @@ public class DummyMeetingApiServiceTest {
         //Now check that there are 2 items int the list
         assertEquals(meetingsRooms.size(),2);
 
-        //If the getMeetingFilteredByRoom worked that mean the 2 items have the same " room" value
-        //that's why I compare them to check if they are really the same.
-        assertSame(meeting.getRoom(),meeting2.getRoom());
+        // I check that they are in meetingsRooms.
+        assertThat(meetingsRooms, containsInAnyOrder(meeting,meeting2));
 
     }
 }
