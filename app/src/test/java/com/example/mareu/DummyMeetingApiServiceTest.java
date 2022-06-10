@@ -1,13 +1,16 @@
 package com.example.mareu;
 
-import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertSame;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 import static org.junit.Assert.assertTrue;
 
 import com.example.mareu.model.Meeting;
 import com.example.mareu.service.DummyMeetingGenerator;
 import com.example.mareu.service.DummyMeetingsApiService;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -44,15 +47,53 @@ public class DummyMeetingApiServiceTest {
         int numberMeetingsBefore = meetings.size();
         meetingsApiService.deleteMeetings(meeting);
         int numberMeetingAfter = meetings.size();
-        assertTrue(numberMeetingsBefore>numberMeetingAfter);
+        assertTrue(numberMeetingsBefore > numberMeetingAfter);
     }
 
     @Test
-    public void createMeeting(){
-        Meeting meeting = new Meeting(50,"Cantine","Sidious","hardcoder@codeisgood.com",new Date());
+    public void createMeeting() {
+        Meeting meeting = new Meeting(50, "Cantine", "Sidious", "hardcoder@codeisgood.com", new Date());
         meetingsApiService.createMeetings(meeting);
         assertTrue(meetingsApiService.getMeetings().contains(meeting));
     }
 
+    @Test
+    public void getMeetingsFilteredByDate (){
+        List<Meeting> meetingsDates = this.meetingsApiService.getMeetings();
+        assertEquals(meetingsDates.size(),7);
+        Meeting date = meetingsDates.get(0);
+        Meeting date2 = meetingsDates.get(1);
+        meetingsDates = meetingsApiService.getMeetingsFilteredByDate(date.getDate());
+        assertEquals(meetingsDates.size(),2);
+        assertSame(date.getDate(),date2.getDate());
+
+
+    }
+    @Test
+    public void getMeetingFilteredByRoom() {
+        //List
+        List<Meeting> meetingsRooms = this.meetingsApiService.getMeetings();
+        //Check there are seven items on the list
+        assertEquals(meetingsRooms.size(),7);
+        //Select a meeting in the list
+        Meeting meeting = meetingsRooms.get(0);
+        //Create a meeting with a room
+        Meeting meeting2 = new Meeting(50, "Cantine", "Yoda", "hardcoder@codeisgood.com", new Date());
+        meetingsApiService.createMeetings(meeting2);
+        //Check that the meeting is added
+        assertTrue(meetingsApiService.getMeetings().contains(meeting2));
+        //Check there are 8 items in the list
+        assertEquals(meetingsRooms.size(),8);
+
+        //Put the getMeetingFilteredByRoom in meetingsRooms
+        meetingsRooms = meetingsApiService.getMeetingFilteredByRoom(meeting.getRoom());
+        //Now check that there are 2 items int the list
+        assertEquals(meetingsRooms.size(),2);
+
+        //If the getMeetingFilteredByRoom worked that mean the 2 items have the same " room" value
+        //that's why I compare them to check if they are really the same.
+        assertSame(meeting.getRoom(),meeting2.getRoom());
+
+    }
 }
 
