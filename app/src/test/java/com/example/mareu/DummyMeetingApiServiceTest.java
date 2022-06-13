@@ -67,33 +67,29 @@ public class DummyMeetingApiServiceTest {
         meetingsDates = meetingsApiService.getMeetingsFilteredByDate(date.getDate());
         assertEquals(meetingsDates.size(),2);
         assertThat(meetingsDates,containsInAnyOrder(date,date2));
-
-
     }
+
     @Test
     public void getMeetingFilteredByRoom() {
         //List
-        List<Meeting> meetingsRooms = this.meetingsApiService.getMeetings();
+        List<Meeting> meetings = this.meetingsApiService.getMeetings();
         //Check there are seven items on the list
-        assertEquals(meetingsRooms.size(),7);
+        assertEquals(meetings.size(),7);
         //Select a meeting in the list
-        Meeting meeting = meetingsRooms.get(0);
+        Meeting meeting = meetings.get(0);
         //Create a meeting with a room
         Meeting meeting2 = new Meeting(50, "Cantine", "Yoda", "hardcoder@codeisgood.com", new Date());
         meetingsApiService.createMeetings(meeting2);
         //Check that the meeting is added
         assertTrue(meetingsApiService.getMeetings().contains(meeting2));
         //Check there are 8 items in the list
-        assertEquals(meetingsRooms.size(),8);
-
+        assertEquals(meetings.size(),8);
         //Put the getMeetingFilteredByRoom in meetingsRooms
-        meetingsRooms = meetingsApiService.getMeetingFilteredByRoom(meeting.getRoom());
+        meetings = meetingsApiService.getMeetingFilteredByRoom(meeting.getRoom());
         //Now check that there are 2 items int the list
-        assertEquals(meetingsRooms.size(),2);
-
+        assertEquals(meetings.size(),2);
         // I check that they are in meetingsRooms.
-        assertThat(meetingsRooms, containsInAnyOrder(meeting,meeting2));
-
+        assertThat(meetings, containsInAnyOrder(meeting,meeting2));
     }
 }
 

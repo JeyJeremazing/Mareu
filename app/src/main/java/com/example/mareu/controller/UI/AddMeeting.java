@@ -58,7 +58,6 @@ public class AddMeeting extends AppCompatActivity implements DatePickerDialog.On
         SimpleDateFormat currentDateString = new SimpleDateFormat("dd-MM-yyyy");
         binding.displayDate.setText(currentDateString.format(c.getTime()));
 
-
     }
 
 
@@ -110,7 +109,6 @@ public class AddMeeting extends AppCompatActivity implements DatePickerDialog.On
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
 
         if (attendeesMail.isEmpty()) {
             binding.attendeesMail.setError("Taper votre adresse mail");
