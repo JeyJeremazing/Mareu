@@ -16,7 +16,7 @@ public abstract class DummyMeetingGenerator {
             new Meeting(004, "APPLICATION", "Sith", "darkangel64@poulpy.fr,benoit92@salut.fr", new Date()),
             new Meeting(005, "INVENTAIRE", "Rancor", "jeremy@jeymail.fr", new Date()),
             new Meeting(006, "RH ", "Grogu", "jeremy@jeymail.fr", new Date()),
-            new Meeting(007, "SERVICE", "Ewoks", "jamesbond@mi6.fr", new Date(1626384405000L))
+            new Meeting(007, "SERVICE", "Yoda", "jamesbond@mi6.fr", new Date(1626384405000L))
 
     );
 

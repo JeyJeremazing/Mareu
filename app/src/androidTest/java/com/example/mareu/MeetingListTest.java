@@ -2,8 +2,11 @@ package com.example.mareu;
 
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -17,11 +20,13 @@ import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static com.example.mareu.utils.UI.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.core.StringContains.containsString;
 
 import android.widget.DatePicker;
 
@@ -88,6 +93,8 @@ public class MeetingListTest {
         onView(withId(R.id.dateDate)).perform(click());
         onView(isAssignableFrom(DatePicker.class)).perform(setDate(2022, 03, 16));
         onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.displayDate)).check(matches(withText(containsString(("16-03-2022")))));
+
         //Choose the room
         onView(withId(R.id.auto_complete_txt)).perform(scrollTo()).perform(click());
         onView(withText("Yoda"))
@@ -100,9 +107,58 @@ public class MeetingListTest {
         //Then check the new meeting is created
         onView(ViewMatchers.withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT + 1));
 
+
     }
+
     @Test
     public void dateFilterIsWorking(){
+        //Select the menu
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        //Select Filter by Date
+        onView(withText("Filter by date"))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
+        onView(isAssignableFrom(DatePicker.class)).perform(setDate(2021, 07, 16));
+        onView(withId(android.R.id.button1)).perform(click());
+        //There are only two items with this date
+        onView(ViewMatchers.withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT -5));
+
+    }
+
+    @Test
+    public void roomFilterIsWorking (){
+        //Select the menu
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        //Select Filter by Room
+        onView(withText("Filter by room"))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
+        //Select a room
+        onView(withText("Yoda"))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
+        //There are only two items with this room
+        onView(ViewMatchers.withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT -5));
+
+    }
+    @Test
+    public void resetFilterIsWorking (){
+        //I have to Filter something...let's do it with rooms:
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("Filter by room"))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
+        onView(withText("Yoda"))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
+        onView(ViewMatchers.withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT -5));
+        //Now I have to use the resetFilter:
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("Filter reset"))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
+        //Then I have to check that we have  original items
+        onView(ViewMatchers.withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT ));
 
     }
 }

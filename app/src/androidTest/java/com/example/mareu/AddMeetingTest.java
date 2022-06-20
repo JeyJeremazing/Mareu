@@ -1,6 +1,5 @@
 package com.example.mareu;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
@@ -9,20 +8,17 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.PickerActions.setDate;
 import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static androidx.test.espresso.matcher.ViewMatchers.withChild;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsAnything.anything;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.StringContains.containsString;
 
 import android.widget.DatePicker;
 
-import androidx.test.espresso.matcher.RootMatchers;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -89,6 +85,8 @@ public class AddMeetingTest {
         onView(withText("Yoda"))
                 .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
                 .perform(click());
+        onView(ViewMatchers.withId(R.id.auto_complete_txt)).check(matches(withText(containsString(("Yoda")))));
+
     }
 
 }
