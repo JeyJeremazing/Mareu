@@ -10,7 +10,7 @@
         android:id="@+id/addMeeting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".controller.UI.AddMeeting">
+        tools:context=".controller.UI.AddMeetingActivity">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -27,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/attendeesMailEdiText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -44,6 +45,7 @@
             app:layout_constraintTop_toBottomOf="@id/attendeesMail">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/meetingEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>

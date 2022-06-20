@@ -1,10 +1,12 @@
-package com.example.mareu;
+package com.example.mareu.utils.UI;
 
 
 import android.view.View;
 
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
+
+import com.example.mareu.R;
 
 import org.hamcrest.Matcher;
 

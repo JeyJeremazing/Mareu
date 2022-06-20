@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class AddMeeting extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddMeetingActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     ActivityAddMeetingBinding binding;
 

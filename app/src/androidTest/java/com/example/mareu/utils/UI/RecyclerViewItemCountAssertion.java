@@ -1,4 +1,4 @@
-package com.example.mareu;
+package com.example.mareu.utils.UI;
 
 import android.view.View;
 

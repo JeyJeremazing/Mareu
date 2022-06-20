@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mareu">
         <activity
-            android:name=".controller.UI.AddMeeting"
+            android:name=".controller.UI.AddMeetingActivity"
             android:exported="false" />
         <activity
             android:name=".controller.MeetingsListActivity"

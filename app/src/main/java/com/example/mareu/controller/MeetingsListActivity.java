@@ -21,17 +21,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mareu.DI.DI;
 import com.example.mareu.R;
-import com.example.mareu.controller.UI.AddMeeting;
+import com.example.mareu.controller.UI.AddMeetingActivity;
 import com.example.mareu.controller.UI.MeetingAdapter;
 import com.example.mareu.databinding.ActivityMeetingListBinding;
 import com.example.mareu.model.Meeting;
 import com.example.mareu.service.ItemClickSupport;
 import com.example.mareu.service.MeetingApiService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 
 
 public class MeetingsListActivity extends AppCompatActivity implements MeetingAdapter.Listener {
@@ -63,7 +60,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     private void setButton() {
         binding.floatingActionButton.setOnClickListener(v -> {
             if (v == binding.floatingActionButton) {
-                startActivity(new Intent(getApplicationContext(), AddMeeting.class));
+                startActivity(new Intent(getApplicationContext(), AddMeetingActivity.class));
             }
         });
     }
