@@ -112,8 +112,6 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
             @Override
             public void onClick(DialogInterface dialog, int position) {
                 String room = rooms[position];
-               /*List<Meeting> meetingList = mMeetingApiService.getMeetingFilteredByRoom(room);
-               mAdapter.updateList(meetingList);*/
                 mAdapter.updateList(mMeetingApiService.getMeetingFilteredByRoom(room));
 
             }
