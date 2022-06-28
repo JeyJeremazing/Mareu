@@ -107,7 +107,6 @@ public class MeetingListTest {
         //Then check the new meeting is created
         onView(ViewMatchers.withId(R.id.recyclerView)).check(withItemCount(ITEMS_COUNT + 1));
 
-
     }
 
     @Test

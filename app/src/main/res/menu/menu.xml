@@ -2,14 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/filter_date"
-      android:title="Filter by date"
-    app:showAsAction="never"/>
-    <item android:id="@+id/filter_rooms"
+    <item
+        android:id="@+id/filter_date"
+        android:title="Filter by date"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/filter_rooms"
         android:title="Filter by room"
-        app:showAsAction="never"/>
-    <item android:id="@+id/filter_reset"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/filter_reset"
         android:title="Filter reset"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 </menu>

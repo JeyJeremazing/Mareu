@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DummyMeetingsApiService implements MeetingApiService {
 
-    private final List<Meeting> meetings= DummyMeetingGenerator.generateMeetings();
+    private final List<Meeting> meetings = DummyMeetingGenerator.generateMeetings();
     private final List<String> roomsList = DummyMeetingGenerator.roomsList();
 
     @Override
@@ -19,13 +19,19 @@ public class DummyMeetingsApiService implements MeetingApiService {
     }
 
     @Override
-    public List<Meeting> getMeetings() { return meetings; }
+    public List<Meeting> getMeetings() {
+        return meetings;
+    }
 
     @Override
-    public void deleteMeetings(Meeting meeting) { meetings.remove(meeting); }
+    public void deleteMeetings(Meeting meeting) {
+        meetings.remove(meeting);
+    }
 
     @Override
-    public void createMeetings(Meeting meeting) { meetings.add(meeting); }
+    public void createMeetings(Meeting meeting) {
+        meetings.add(meeting);
+    }
 
     @Override
     public List<Meeting> getMeetingsFilteredByDate(Date date) {
@@ -34,7 +40,7 @@ public class DummyMeetingsApiService implements MeetingApiService {
 
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(date);
-        
+
         for (int i = 0; i < meetings.size(); i++) {
             Calendar cal2 = Calendar.getInstance();
             cal2.setTime(meetings.get(i).getDate());
@@ -46,15 +52,15 @@ public class DummyMeetingsApiService implements MeetingApiService {
         return result;
     }
 
-   @Override
+    @Override
     public List<Meeting> getMeetingFilteredByRoom(String room) {
-       ArrayList<Meeting> resultRooms = new ArrayList<>();
+        ArrayList<Meeting> resultRooms = new ArrayList<>();
 
-       for (Meeting meeting:meetings){
-           if (meeting.getRoom().equals(room)){
-               resultRooms.add(meeting);
-           }
-       }
-       return resultRooms;
+        for (Meeting meeting : meetings) {
+            if (meeting.getRoom().equals(room)) {
+                resultRooms.add(meeting);
+            }
+        }
+        return resultRooms;
     }
 }

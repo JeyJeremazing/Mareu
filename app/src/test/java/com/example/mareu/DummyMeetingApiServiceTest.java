@@ -72,21 +72,21 @@ public class DummyMeetingApiServiceTest {
         List<Meeting> meetings = this.meetingsApiService.getMeetings();
         //Check there are seven items on the list
         assertEquals(meetings.size(), 7);
-        //Select a meeting in the list
-        Meeting meeting = meetings.get(0);
         //Create a meeting with a room
-        Meeting meeting2 = new Meeting(50, "Cantine", "Yoda", "hardcoder@codeisgood.com", new Date());
+        Meeting meeting2 = new Meeting(50, "Cantine", "Jawas", "hardcoder@codeisgood.com", new Date());
         meetingsApiService.createMeetings(meeting2);
+        Meeting meeting3 = new Meeting(51, "Cantine", "Jawas", "hardcoder@codeisgood.com", new Date());
+        meetingsApiService.createMeetings(meeting3);
         //Check that the meeting is added
         assertTrue(meetingsApiService.getMeetings().contains(meeting2));
         //Check there are 8 items in the list
-        assertEquals(meetings.size(), 8);
+        assertEquals(meetings.size(), 9);
         //Put the getMeetingFilteredByRoom in meetingsRooms
-        meetings = meetingsApiService.getMeetingFilteredByRoom(meeting.getRoom());
+        meetings = meetingsApiService.getMeetingFilteredByRoom("Jawas");
         //Now check that there are 2 items int the list
         assertEquals(meetings.size(), 2);
         // I check that they are in meetingsRooms.
-        assertThat(meetings, containsInAnyOrder(meeting, meeting2));
+        assertThat(meetings, containsInAnyOrder(meeting2, meeting3));
     }
 }
 

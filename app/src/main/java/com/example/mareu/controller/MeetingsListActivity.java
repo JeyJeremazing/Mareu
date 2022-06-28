@@ -69,7 +69,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initUI();
-        configureOnClickRecyclerView();
+        //configureOnClickRecyclerView();
 
     }
 

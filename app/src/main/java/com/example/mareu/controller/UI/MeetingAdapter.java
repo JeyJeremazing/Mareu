@@ -13,7 +13,6 @@ import com.example.mareu.R;
 import com.example.mareu.model.Meeting;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
@@ -62,7 +61,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         return this.mMeetings.get(position);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private MeetingAdapter adapter;
 
         public final TextView meetingText;
